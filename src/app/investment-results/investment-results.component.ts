@@ -10,12 +10,12 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './investment-results.component.css',
 })
 export class InvestmentResultsComponent implements OnInit {
-  // result = input()
+  results = input<AnnualData[]>([]);
 
-  @Input({ required: true }) results: AnnualData[] = [];
+  // @Input({ required: true }) results: AnnualData[] = [];
 
   ngOnInit(): void {
-    console.log(this.results);
-    console.log(this.results.length);
+    console.log(this.results());
+    console.log(this.results().length);
   }
 }
