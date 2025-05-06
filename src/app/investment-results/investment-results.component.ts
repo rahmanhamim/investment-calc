@@ -1,6 +1,7 @@
-import { Component, Input, input, OnInit } from '@angular/core';
+import { Component, inject, Input, input, OnInit } from '@angular/core';
 import { AnnualData } from '../investment-input.model';
 import { CurrencyPipe } from '@angular/common';
+import { InvestmentService } from '../investment.service';
 
 @Component({
   selector: 'app-investment-results',
@@ -10,12 +11,14 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './investment-results.component.css',
 })
 export class InvestmentResultsComponent implements OnInit {
-  results = input<AnnualData[]>([]);
-
+  // results = input<AnnualData[]>([]);
   // @Input({ required: true }) results: AnnualData[] = [];
 
-  ngOnInit(): void {
-    console.log(this.results());
-    console.log(this.results().length);
+  private investmentService = inject(InvestmentService);
+
+  get results() {
+    return this.investmentService.resultsData;
   }
+
+  ngOnInit(): void {}
 }
